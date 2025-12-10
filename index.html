@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" manifest="/cache.manifest">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5e8c7" />
+  <meta name="description" content="Cybersecurity learning roadmap tracker" />
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/x-icon" href="https://www.x.ai/favicon.ico" />
+  <link rel="prefetch" href="http://localhost:5000/api/roadmap" as="fetch" crossorigin="anonymous" />
+  <title>Cyber Roadmap Tracker</title>
+</head>
+<body class="theme-warm">
+  <header class="header">
+    <h1>Cyber Roadmap Tracker</h1>
+    <div class="controls">
+      <div class="select-wrapper">
+        <select id="monthSelect">
+          <option value="January">Jan — Foundations</option>
+          <option value="February">Feb — Linux Security</option>
+          <option value="March">Mar — Networking</option>
+          <option value="April">Apr — Web Security</option>
+          <option value="May">May — Pen Testing</option>
+          <option value="June">Jun — Exploitation</option>
+          <option value="July">Jul — Forensics</option>
+          <option value="August">Aug — Malware</option>
+          <option value="September">Sep — Cloud</option>
+          <option value="October">Oct — Threat Intel</option>
+          <option value="November">Nov — Red/Blue</option>
+          <option value="December">Dec — Capstone</option>
+        </select>
+      </div>
+      <button id="prevDay" class="btn">←</button>
+      <button id="nextDay" class="btn">→</button>
+      <button id="toggleTheme" class="btn">🌙</button>
+      <button id="clearProgressBtn" class="btn warning">Clear</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="left">
+      <div class="card">
+        <h2 id="dayTitle" class="title">Loading...</h2>
+        <div class="info-grid">
+          <p id="dayTopic" class="muted">Topic: —</p>
+          <p id="dayDescription" class="muted">What to learn: —</p>
+          <p id="dayQuote" class="muted">Quote: —</p>
+          <p id="dayTip" class="muted">Tip: —</p>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div id="progressBar"></div>
+          </div>
+          <p id="progressText" class="muted">Progress: 0%</p>
+        </div>
+        <button id="completeBtn" class="btn primary">Mark</button>
+      </div>
+      <div class="card">
+        <h3 class="title">Notes</h3>
+        <textarea id="notesArea" placeholder="Write your reflection..."></textarea>
+        <p id="saveStatus" class="muted">Not saved</p>
+        <div class="action-row">
+          <button id="saveNote" class="btn primary">💾</button>
+          <button id="openModal" class="btn">🪞</button>
+          <button id="exportBtn" class="btn">📤</button>
+          <input id="aiQuestion" type="text" placeholder="Ask about topic..." class="input">
+          <button id="askAiBtn" class="btn">Ask AI</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3 class="title">Search Courses</h3>
+        <input id="courseSearchInput" type="text" placeholder="Search courses..." class="input">
+        <ul id="courseSearchResults" class="overview-list hidden"></ul>
+      </div>
+    </section>
+    <section class="right">
+      <div class="card progress-card">
+        <h3 class="title">Daily</h3>
+        <div class="circular-progress">
+          <svg>
+            <circle cx="40" cy="40" r="32"></circle>
+            <circle id="dailyProgressCircle" cx="40" cy="40" r="32"></circle>
+          </svg>
+          <p id="dailyProgressText" class="progress-value">0%</p>
+        </div>
+      </div>
+      <div class="card progress-card">
+        <h3 class="title">Weekly</h3>
+        <div class="circular-progress">
+          <svg>
+            <circle cx="40" cy="40" r="32"></circle>
+            <circle id="weeklyProgressCircle" cx="40" cy="40" r="32"></circle>
+          </svg>
+          <p id="weeklyProgressText" class="progress-value">0%</p>
+        </div>
+      </div>
+      <div class="card progress-card collapsible">
+        <h3 class="title">Monthly <span class="toggle">▼</span></h3>
+        <div class="circular-progress">
+          <svg>
+            <circle cx="40" cy="40" r="32"></circle>
+            <circle id="monthlyProgressCircle" cx="40" cy="40" r="32"></circle>
+          </svg>
+          <p id="monthlyProgressText" class="progress-value">0%</p>
+        </div>
+        <ul id="monthOverview" class="overview-list hidden"></ul>
+      </div>
+      <div class="card progress-card collapsible">
+        <h3 class="title">Yearly <span class="toggle">▼</span></h3>
+        <div class="circular-progress">
+          <svg>
+            <circle cx="40" cy="40" r="32"></circle>
+            <circle id="yearlyProgressCircle" cx="40" cy="40" r="32"></circle>
+          </svg>
+          <p id="yearlyProgressText" class="progress-value">0%</p>
+        </div>
+        <ul id="yearProgressList" class="overview-list hidden"></ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 class="title">Reflection</h2>
+      <p id="reflectionQuestion"></p>
+      <textarea id="reflectionInput" placeholder="What did you learn?"></textarea>
+      <div class="modal-actions">
+        <button id="closeModal" class="btn">Close</button>
+        <button id="saveReflection" class="btn primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="themeModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 class="title">Themes</h2>
+      <div id="themePreviews"></div>
+      <button id="closeThemeModal" class="btn">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

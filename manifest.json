@@ -1,0 +1,16 @@
+{
+  "name": "Cyber Roadmap Tracker",
+  "short_name": "Cyber Roadmap",
+  "description": "Track your cybersecurity learning journey.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5e8c7",
+  "theme_color": "#f5e8c7",
+  "icons": [
+    {
+      "src": "https://www.x.ai/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
